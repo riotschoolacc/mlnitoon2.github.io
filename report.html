@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit a Report</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="form-card">
+      <h1>Submit a Report</h1>
+      <form id="report-form">
+        <label for="student-name">Student to Report:</label>
+        <input type="text" id="student-name" placeholder="Enter the student's name" required>
+
+        <label for="issue-type">Issue:</label>
+        <select id="issue-type" required>
+          <option value="">Select an issue</option>
+          <option value="playing-games">Playing Games</option>
+          <option value="bullying">Bullying</option>
+          <option value="other">Other</option>
+        </select>
+
+        <div id="bullying-options" class="hidden">
+          <label for="bullying-type">Who are they bullying?</label>
+          <select id="bullying-type">
+            <option value="me">Me</option>
+            <option value="another-student">Another Student</option>
+          </select>
+        </div>
+
+        <div id="other-issue" class="hidden">
+          <label for="other-details">What did they do?</label>
+          <input type="text" id="other-details" placeholder="Describe the issue">
+        </div>
+
+        <label for="full-story">Explain the Full Story:</label>
+        <textarea id="full-story" placeholder="Provide details..." required></textarea>
+
+        <button type="submit">Submit Report</button>
+      </form>
+    </div>
+  </div>
+  <script src="report.js"></script>
+</body>
+</html>
