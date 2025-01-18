@@ -28,7 +28,7 @@ document.getElementById('report-form').addEventListener('submit', function (e) {
     studentName: studentName, // Set the correct student name (reported user)
     issue: reportText,
     submittedBy: currentUser.username, // The person submitting the report is still the logged-in user
-    fullStory: document.getElementById('full-story').value || 'No details provided', // Get the full story if entered
+    fullStory: reportText || 'No details provided', // Get the full story if entered
   };
 
   // Add the report to the global array
