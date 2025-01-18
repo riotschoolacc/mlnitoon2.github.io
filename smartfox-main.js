@@ -1,6 +1,6 @@
     // Create configuration object
     var config = {};
-    config.host = 127.0.0.1;
+    config.host = "127.0.0.1";
     config.port = 9933;
     config.debug = true;
     config.useSSL = false;
