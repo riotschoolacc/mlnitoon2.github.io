@@ -1,50 +1,55 @@
-    // Create configuration object
-    var config = {};
-    config.host = "127.0.0.1";
-    config.port = 9933;
-    config.debug = false;
-    config.useSSL = false;
+// Create configuration object
+var config = {};
+config.host = "127.0.0.1";
+config.port = 9933;
+config.debug = false;
+config.useSSL = false;
 
-    // Create SmartFox client instance
-    sfs = new SFS2X.SmartFox(config);
+// Create SmartFox client instance
+sfs = new SFS2X.SmartFox(config);
 
-    // Set logging
-    sfs.logger.level = SFS2X.LogLevel.DEBUG;
-    sfs.logger.enableConsoleOutput = true;
-    sfs.logger.enableEventDispatching = true;
+// Set logging
+sfs.logger.level = SFS2X.LogLevel.DEBUG;
+sfs.logger.enableConsoleOutput = true;
+sfs.logger.enableEventDispatching = true;
 
-    // Add event listeners
-    sfs.addEventListener(SFS2X.SFSEvent.CONNECTION, onConnection, this);
-    sfs.addEventListener(SFS2X.SFSEvent.CONNECTION_LOST, onConnectionLost, this);
+// Add event listeners
+sfs.addEventListener(SFS2X.SFSEvent.CONNECTION, onConnection, this);
+sfs.addEventListener(SFS2X.SFSEvent.CONNECTION_LOST, onConnectionLost, this);
 
-    // Attempt connection
-    sfs.connect();
+// Attempt connection
+sfs.connect();
 
-    function onConnection(event) {
-        if (event.success) {
-            console.log("Connected to SmartFoxServer 2X!<br>SFS2X API version: " + sfs.version);
+function onConnection(event) {
+    if (event.success) {
+        console.log("Connected to SmartFoxServer 2X!<br>SFS2X API version: " + sfs.version);
 
-            // Show disconnect button
-            switchButtons();
-        } else {
-            console.log("Connection failed: " + (event.errorMessage ? event.errorMessage + " (" + event.errorCode + ")" : "Is the server running at all?"));
+        // Show disconnect button
+        switchButtons();
+    } else {
+        console.log("Connection failed: " + (event.errorMessage ? event.errorMessage + " (" + event.errorCode + ")" : "Is the server running at all?"));
 
-            // Reset
-            reset();
-        }
-    }
-
-    function onConnectionLost(event) {
-        console.log("Disconnection occurred; reason is: " + event.reason);
         // Reset
         reset();
     }
+}
 
-    function reset() {
+function onConnectionLost(event) {
+    console.log("Disconnection occurred; reason is: " + event.reason);
+    // Reset
+    reset();
+}
 
-        // Remove SFS2X listeners
-        sfs.removeEventListener(SFS2X.SFSEvent.CONNECTION, onConnection);
-        sfs.removeEventListener(SFS2X.SFSEvent.CONNECTION_LOST, onConnectionLost);
+function reset() {
 
-        sfs = null;
-    }
+    // Remove SFS2X listeners
+    sfs.removeEventListener(SFS2X.SFSEvent.CONNECTION, onConnection);
+    sfs.removeEventListener(SFS2X.SFSEvent.CONNECTION_LOST, onConnectionLost);
+
+    sfs = null;
+}
+
+function loginToSmartFox(username, password) {
+    var zoneName = "Worko";
+    sfs.login(zoneName, username, password);
+}
