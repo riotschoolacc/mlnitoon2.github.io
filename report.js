@@ -1,6 +1,5 @@
 const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 if (!currentUser || currentUser.role !== 'student') {
-  alert('Access denied.');
   window.location.href = 'index.html';
 }
 
@@ -13,13 +12,6 @@ function loadReports() {
   
   // Simulate async loading (could be a real fetch in practice)
   setTimeout(() => {
-    loading.style.display = 'none'; // Hide loading text
-    
-    if (reports.length === 0) {
-      noReports.style.display = 'block';
-    } else {
-      noReports.style.display = 'none';
-      
       reportList.innerHTML = reports
         .map(report => `
           <li class="report-item">
@@ -30,7 +22,6 @@ function loadReports() {
           </li>
         `)
         .join('');
-    }
   }, 500); // Simulate a delay for loading reports
 }
 
