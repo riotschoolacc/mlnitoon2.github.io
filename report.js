@@ -11,8 +11,6 @@ function loadReports() {
   const loading = document.getElementById('loading');
   const noReports = document.getElementById('no-reports');
   
-  loading.style.display = 'block'; // Show loading text
-  
   // Simulate async loading (could be a real fetch in practice)
   setTimeout(() => {
     loading.style.display = 'none'; // Hide loading text
