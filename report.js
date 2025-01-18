@@ -1,5 +1,5 @@
 const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-if (!currentUser || currentUser.role !== 'teacher') {
+if (!currentUser || currentUser.role !== 'student') {
   alert('Access denied.');
   window.location.href = 'index.html';
 }
