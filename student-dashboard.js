@@ -11,23 +11,24 @@ document.getElementById('report-form').addEventListener('submit', function (e) {
   // Debugging: Check if form is being submitted
   console.log('Form submission triggered');
 
+  const studentName = document.getElementById('student-name').value; // Get the reported student's name
   const reportText = document.getElementById('report-text').value;
 
-  // Check if the report text field is empty
-  if (!reportText) {
-    alert('Report text cannot be empty.');
+  // Check if any of the fields are empty
+  if (!studentName || !reportText) {
+    alert('Both the student name and the report text are required.');
     return;
   }
 
   // Retrieve or initialize the global reports array
   const reports = JSON.parse(localStorage.getItem('reports')) || [];
 
-  // Create a new report
+  // Create a new report with the correct student name
   const newReport = {
-    studentName: currentUser.username,
+    studentName: studentName, // Set the correct student name (reported user)
     issue: reportText,
-    submittedBy: currentUser.username,
-    fullStory: 'No details provided',
+    submittedBy: currentUser.username, // The person submitting the report is still the logged-in user
+    fullStory: document.getElementById('full-story').value || 'No details provided', // Get the full story if entered
   };
 
   // Add the report to the global array
@@ -39,7 +40,7 @@ document.getElementById('report-form').addEventListener('submit', function (e) {
   console.log('Updated reports:', reports);
 
   alert('Report submitted!');
-  document.getElementById('report-text').value = '';  // Clear the input field
+  document.getElementById('report-form').reset();  // Clear the input fields
 
   // Refresh the reports display
   loadReports();
