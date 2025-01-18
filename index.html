@@ -17,23 +17,5 @@
       </div>
     </div>
   </div>
-
-  <!-- Add version text at the bottom -->
-  <footer>
-    <p id="version-text"></p>
-  </footer>
-
-  <script>
-    // Get the text from the file and display it at the bottom
-    fetch('version-text.txt')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('version-text').textContent = data;
-      })
-      .catch(err => {
-        console.error('Error fetching version-text:', err);
-        document.getElementById('version-text').textContent = "Version information not available.";
-      });
-  </script>
 </body>
 </html>
