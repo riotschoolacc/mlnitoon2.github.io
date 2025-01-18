@@ -1,53 +1,45 @@
 const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-if (!currentUser || currentUser.role !== 'student') {
+if (!currentUser || currentUser.role !== 'teacher') {
   alert('Access denied.');
   window.location.href = 'index.html';
 }
 
-document.getElementById('report-form').addEventListener('submit', function (e) {
-  e.preventDefault();
-  const reportText = document.getElementById('report-text').value;
-
-  if (!reportText) {
-    alert('Report text cannot be empty.');
-    return;
-  }
-
-  // Retrieve or initialize the global reports array
-  const reports = JSON.parse(localStorage.getItem('reports')) || [];
-
-  // Create a new report
-  const newReport = {
-    studentName: currentUser.username,
-    issue: reportText,
-    submittedBy: currentUser.username,
-    fullStory: 'No details provided',
-  };
-
-  // Add the report to the global array
-  reports.push(newReport);
-  localStorage.setItem('reports', JSON.stringify(reports));
-
-  console.log('Report submitted:', newReport);
-  console.log('Updated reports:', reports);
-
-  alert('Report submitted!');
-  document.getElementById('report-text').value = '';
-  loadReports();
-});
+// Set the welcome message with the teacher's name
+const welcomeMessage = document.getElementById('welcome-message');
+if (currentUser && currentUser.name) {
+  welcomeMessage.innerHTML = `Welcome, ${currentUser.name}`;
+}
 
 function loadReports() {
   const reportList = document.getElementById('report-list');
+  const loading = document.getElementById('loading');
+
+  // Retrieve the reports array from localStorage
   const reports = JSON.parse(localStorage.getItem('reports')) || [];
 
-  // Filter reports submitted by the current student
-  const studentReports = reports.filter(report => report.submittedBy === currentUser.username);
+  console.log('All reports:', reports);
 
-  console.log('Student reports:', studentReports);
+  loading.style.display = 'block';
 
-  reportList.innerHTML = studentReports
-    .map(report => `<li>${report.issue}</li>`)
-    .join('');
+  setTimeout(() => {
+    loading.style.display = 'none';
+    reportList.classList.remove('hidden');
+
+    if (reports.length === 0) {
+      reportList.innerHTML = '<li>No reports available.</li>';
+    } else {
+      reportList.innerHTML = reports
+        .map(report => `
+          <li class="report-item">
+            <strong>Reported Student:</strong> ${report.studentName} <br>
+            <strong>Issue:</strong> ${report.issue} <br>
+            <strong>Full Story:</strong> ${report.fullStory || 'N/A'} <br>
+            <strong>Submitted By:</strong> ${report.submittedBy}
+          </li>
+        `)
+        .join('');
+    }
+  }, 500);
 }
 
 loadReports();
