@@ -4,15 +4,25 @@ if (!currentUser || currentUser.role !== 'student') {
   window.location.href = 'index.html';
 }
 
-const users = JSON.parse(localStorage.getItem('users'));
-const user = users.find(u => u.username === currentUser.username);
-
 document.getElementById('report-form').addEventListener('submit', function (e) {
   e.preventDefault();
   const reportText = document.getElementById('report-text').value;
 
-  user.reports.push({ text: reportText, student: currentUser.username });
-  localStorage.setItem('users', JSON.stringify(users));
+  // Retrieve or initialize the global reports array
+  const reports = JSON.parse(localStorage.getItem('reports')) || [];
+
+  // Create a new report
+  const newReport = {
+    studentName: currentUser.username,
+    issue: reportText,
+    submittedBy: currentUser.username,
+    fullStory: 'No details provided',
+  };
+
+  // Add the report to the global array
+  reports.push(newReport);
+  localStorage.setItem('reports', JSON.stringify(reports));
+
   alert('Report submitted!');
   document.getElementById('report-text').value = '';
   loadReports();
@@ -20,7 +30,14 @@ document.getElementById('report-form').addEventListener('submit', function (e) {
 
 function loadReports() {
   const reportList = document.getElementById('report-list');
-  reportList.innerHTML = user.reports.map(report => `<li>${report.text}</li>`).join('');
+  const reports = JSON.parse(localStorage.getItem('reports')) || [];
+
+  // Filter reports submitted by the current student
+  const studentReports = reports.filter(report => report.submittedBy === currentUser.username);
+
+  reportList.innerHTML = studentReports
+    .map(report => `<li>${report.issue}</li>`)
+    .join('');
 }
 
 loadReports();
