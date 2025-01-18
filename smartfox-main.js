@@ -1,39 +1,72 @@
-// Create a new SmartFox instance
-var sfs = new SmartFox();
+    // Create configuration object
+    var config = {};
+    config.host = 127.0.0.1;
+    config.port = 9933;
+    config.debug = true;
+    config.useSSL = false;
+ 
+    // Create SmartFox client instance
+    sfs = new SFS2X.SmartFox(config);
+ 
+    // Set logging
+    sfs.logger.level = SFS2X.LogLevel.DEBUG;
+    sfs.logger.enableConsoleOutput = true;
+    sfs.logger.enableEventDispatching = true;
+ 
+    sfs.logger.addEventListener(SFS2X.LoggerEvent.DEBUG, onDebugLogged, this);
+    sfs.logger.addEventListener(SFS2X.LoggerEvent.INFO, onInfoLogged, this);
+    sfs.logger.addEventListener(SFS2X.LoggerEvent.WARNING, onWarningLogged, this);
+    sfs.logger.addEventListener(SFS2X.LoggerEvent.ERROR, onErrorLogged, this);
+ 
+    // Add event listeners
+    sfs.addEventListener(SFS2X.SFSEvent.CONNECTION, onConnection, this);
+    sfs.addEventListener(SFS2X.SFSEvent.CONNECTION_LOST, onConnectionLost, this);
+ 
+    // Attempt connection
+    sfs.connect();
 
-// Connect to the server
-sfs.connect("127.0.0.1", 9933);  // Use your server IP and port here
+function onConnection(event)
+{
+    if (event.success)
+    {
+        trace("Connected to SmartFoxServer 2X!<br>SFS2X API version: " + sfs.version);
+ 
+        // Show disconnect button
+        switchButtons();
+    }
+    else
+    {
+        trace("Connection failed: " + (event.errorMessage ? event.errorMessage + " (" + event.errorCode + ")" : "Is the server running at all?"));
+ 
+        // Reset
+        reset();
+    }
+}
 
-// Once connected, join a zone
-sfs.addEventListener(SFS2X.SFSEvent.CONNECTION, function(event) {
-  if (event.success) {
-    console.log("Connected to SmartFoxServer!");
-    
-    // Join the zone
-    var zoneName = "YourZone"; // Name of the zone you created in SmartFoxServer
-    sfs.send(new SFS2X.Requests.JoinRoomRequest(zoneName));
-  } else {
-    console.log("Connection failed: " + event.errorMessage);
-  }
-});
-
-// Handle server messages (like report submission)
-sfs.addEventListener(SFS2X.SFSEvent.EXTENSION_RESPONSE, function(event) {
-  var response = event.params;
-  if (response.status === "success") {
-    console.log("Report submitted successfully.");
-  } else {
-    console.log("Report submission failed.");
-  }
-});
-
-// Send a report to the server
-function submitReport(studentName, issue, details, fullStory) {
-  var reportData = {
-    studentName: studentName,
-    issue: issue,
-    details: details,
-    fullStory: fullStory
-  };
-  sfs.send(new SFS2X.Requests.ExtensionRequest("submit_report", reportData));
+function onConnectionLost(event)
+{
+    trace("Disconnection occurred; reason is: " + event.reason);
+ 
+    // Hide disconnect button
+    switchButtons();
+ 
+    // Reset
+    reset();
+}
+ 
+function reset()
+{
+    // Enable interface
+    enableInterface(true);
+ 
+    // Remove SFS2X listeners
+    sfs.removeEventListener(SFS2X.SFSEvent.CONNECTION, onConnection);
+    sfs.removeEventListener(SFS2X.SFSEvent.CONNECTION_LOST, onConnectionLost);
+     
+    sfs.logger.removeEventListener(SFS2X.LoggerEvent.DEBUG, onDebugLogged);
+    sfs.logger.removeEventListener(SFS2X.LoggerEvent.INFO, onInfoLogged);
+    sfs.logger.removeEventListener(SFS2X.LoggerEvent.WARNING, onWarningLogged);
+    sfs.logger.removeEventListener(SFS2X.LoggerEvent.ERROR, onErrorLogged);
+     
+    sfs = null;
 }
