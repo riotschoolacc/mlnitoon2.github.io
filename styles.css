@@ -4,17 +4,15 @@ body {
   padding: 0;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   height: 100vh;
   background-color: #f3f4f6;
   animation: fadeIn 0.5s forwards;
-  flex-direction: column;
-  padding-top: 30px;
 }
 
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 400px;
   margin: 0 auto;
 }
 
@@ -24,7 +22,6 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
   text-align: center;
-  margin-bottom: 20px;
 }
 
 h1 {
@@ -128,40 +125,17 @@ textarea {
   100% { transform: rotate(360deg); }
 }
 
-/* Read More Section */
-#worko-info-container {
-  margin-top: 40px;
-  animation: slideInFromTop 1s ease-in-out;
-}
-
-@keyframes slideInFromTop {
-  0% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-#worko-info h1 {
-  font-size: 28px;
-  margin-bottom: 20px;
+/* Fade-in animation for report list */
+#report-list {
+  list-style-type: none;
+  padding-left: 0;
+  font-size: 16px;
   color: #333;
   opacity: 0;
-  animation: fadeInText 1s forwards;
+  animation: fadeInReports 1s forwards;
 }
 
-#worko-info p {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #555;
-  opacity: 0;
-  animation: fadeInText 1s forwards;
-}
-
-@keyframes fadeInText {
+@keyframes fadeInReports {
   from {
     opacity: 0;
   }
@@ -170,36 +144,14 @@ textarea {
   }
 }
 
-#read-more-content {
-  max-width: 800px;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.5s ease, visibility 0s 0.5s;
+.report-item {
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  background-color: #fafafa;
 }
 
-#read-more-content.show {
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.5s ease;
-}
-
-#read-more-btn {
-  padding: 10px 20px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 20px;
-  transition: background-color 0.3s ease;
-}
-
-#read-more-btn:hover {
-  background-color: #45a049;
-}
-
-@media (max-width: 768px) {
-  #worko-info-container {
-    text-align: center;
-  }
+.report-item strong {
+  color: #333;
 }
