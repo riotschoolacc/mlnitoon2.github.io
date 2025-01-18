@@ -46,10 +46,5 @@
         sfs.removeEventListener(SFS2X.SFSEvent.CONNECTION, onConnection);
         sfs.removeEventListener(SFS2X.SFSEvent.CONNECTION_LOST, onConnectionLost);
 
-        sfs.logger.removeEventListener(SFS2X.LoggerEvent.DEBUG, onDebugLogged);
-        sfs.logger.removeEventListener(SFS2X.LoggerEvent.INFO, onInfoLogged);
-        sfs.logger.removeEventListener(SFS2X.LoggerEvent.WARNING, onWarningLogged);
-        sfs.logger.removeEventListener(SFS2X.LoggerEvent.ERROR, onErrorLogged);
-
         sfs = null;
     }
