@@ -1,12 +1,13 @@
 document.getElementById('signin-form').addEventListener('submit', function (e) {
     e.preventDefault();
-    const username = document.getElementById('signin-username').value;
+    const username = document.getElementById('signin-email').value;
     const password = document.getElementById('signin-password').value;
   
     const users = JSON.parse(localStorage.getItem('users')) || [];
     const user = users.find(u => u.username === username && u.password === password);
   
     if (user) {
+    loginToSmartFox(username, password);
       localStorage.setItem('currentUser', JSON.stringify(user));
       alert(`Signed in successfully as ${user.role}!`);
   
