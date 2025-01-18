@@ -34,7 +34,6 @@ document.getElementById('signup-form').addEventListener('submit', function (e) {
 
   // Auto-sign-in
   localStorage.setItem('currentUser', JSON.stringify({ username, role }));
-  alert(`Signed up and logged in as ${role}!`);
 
   // Redirect based on role
   if (role === 'teacher') {
