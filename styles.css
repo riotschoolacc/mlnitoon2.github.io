@@ -9,7 +9,7 @@ body {
   background-color: #f3f4f6;
 }
 
-footer {
+.footer {
   position: fixed;
   bottom: 0;
 }
