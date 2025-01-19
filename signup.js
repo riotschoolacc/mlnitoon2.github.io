@@ -10,6 +10,7 @@ document.getElementById('signup-role').addEventListener('change', function () {
 document.getElementById('signup-form').addEventListener('submit', function (e) {
   e.preventDefault();
   const username = document.getElementById('signup-username').value;
+  const email = document.getElementById('signup-email').value;
   const password = document.getElementById('signup-password').value;
   const repeatPassword = document.getElementById('repeat-password').value;
   const role = document.getElementById('signup-role').value;
@@ -33,7 +34,7 @@ document.getElementById('signup-form').addEventListener('submit', function (e) {
   localStorage.setItem('users', JSON.stringify(users));
 
   // Auto-sign-in
-  localStorage.setItem('currentUser', JSON.stringify({ username, role }));
+  localStorage.setItem('currentUser', JSON.stringify({ username, role, email }));
 
   // Redirect based on role
   if (role === 'teacher') {
