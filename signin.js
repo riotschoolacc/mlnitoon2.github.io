@@ -4,7 +4,7 @@ document.getElementById('signin-form').addEventListener('submit', function (e) {
     const password = document.getElementById('signin-password').value;
   
     const users = JSON.parse(localStorage.getItem('users')) || [];
-    const user = users.find(u => u.username === username && u.password === password);
+    const user = users.find(u => u.email === username && u.password === password);
   
     if (user) {
     loginToSmartFox(username, password);
