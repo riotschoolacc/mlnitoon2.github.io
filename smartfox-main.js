@@ -23,9 +23,6 @@ sfs.connect();
 function onConnection(event) {
     if (event.success) {
         console.log("Connected to SmartFoxServer 2X!<br>SFS2X API version: " + sfs.version);
-
-        // Show disconnect button
-        switchButtons();
     } else {
         console.log("Connection failed: " + (event.errorMessage ? event.errorMessage + " (" + event.errorCode + ")" : "Is the server running at all?"));
 
