@@ -21,24 +21,25 @@ sfs.connect();
 var CMD_SUBMIT = "$SignUp.Submit";
 var zoneName = "Worko";
 
+let loginSuccess = false;
+
 function onConnection(event) {
     if (event.success) {
         console.log("Connected to SmartFoxServer 2X!<br>SFS2X API version: " + sfs.version);
     } else {
         console.log("Connection failed: " + (event.errorMessage ? event.errorMessage + " (" + event.errorCode + ")" : "Is the server running at all?"));
-
         reset();
     }
 }
 
-function onLogin(evt)
-{
+function onLogin(evt) {
     console.log("Login successful; username is " + evt.user.name);
+    loginSuccess = true;
 }
- 
-function onLoginError(evt)
-{
+
+function onLoginError(evt) {
     console.warn("Login failed: " + evt.errorMessage);
+    loginSuccess = false;
 }
 
 function onConnectionLost(event) {
@@ -87,7 +88,7 @@ function reset() {
 }
 
 function loginToSmartFox(email, password, login_type, username, age, role) {
-    console.log("Logging into smartfox")
+    console.log("Logging into smartfox");
     var params = new SFS2X.SFSObject();
 
     if (login_type == "signup") {
@@ -98,8 +99,17 @@ function loginToSmartFox(email, password, login_type, username, age, role) {
 
     params.putUtfString("login_type", login_type);
     sfs.send(new SFS2X.LoginRequest(email, password, params, zoneName));
-}
 
-function findUser(username, password) {
-    console.log("Finding")
+    return new Promise((resolve, reject) => {
+        const checkLoginStatus = (event) => {
+            if (event.type === SFS2X.SFSEvent.LOGIN) {
+                resolve(true);
+            } else if (event.type === SFS2X.SFSEvent.LOGIN_ERROR) {
+                resolve(false);
+            }
+        };
+
+        sfs.addEventListener(SFS2X.SFSEvent.LOGIN, checkLoginStatus);
+        sfs.addEventListener(SFS2X.SFSEvent.LOGIN_ERROR, checkLoginStatus);
+    });
 }
