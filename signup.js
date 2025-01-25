@@ -47,15 +47,4 @@ document.getElementById('signup-form').addEventListener('submit', function (e) {
     showAlert('You are not that young.', 7000);
     return;
   }
-
-  const success = await handleLogin(email, password, "signup", username, age, role);
-  if (success) {
-    if (role === 'teacher') {
-      window.location.href = 'teacher-dashboard.html';
-    } else {
-      window.location.href = 'student-dashboard.html';
-    } 
-  } else {
-    showAlert('Sign-up failed. Check your credentials and try again.', 7000);
-  }
-});
+}
