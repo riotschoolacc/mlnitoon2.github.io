@@ -19,6 +19,7 @@ sfs.addEventListener(SFS2X.SFSEvent.LOGIN_ERROR, onLoginError, this);
 sfs.connect();
 
 var CMD_SUBMIT = "$SignUp.Submit";
+var zoneName = "Worko";
 
 function onConnection(event) {
     if (event.success) {
@@ -85,10 +86,13 @@ function reset() {
     sfs = null;
 }
 
-function loginToSmartFox(username, password) {
+function loginToSmartFox(username, password, email, age, role) {
     console.log("Loginning In to smartfox")
-    var zoneName = "Worko";
-    sfs.send(new SFS2X.LoginRequest(username, password, null, zoneName));
+    var params = new SFS2X.SFSObject();
+    params.putUtfString("email", email);
+    params.putInt("age", age);
+    params.putUtfString("role", role);
+    sfs.send(new SFS2X.LoginRequest(username, password, params, zoneName));
 }
 
 function findUser(username, password) {
