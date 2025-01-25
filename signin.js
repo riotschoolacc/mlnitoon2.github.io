@@ -1,16 +1,12 @@
 document.getElementById('signin-form').addEventListener('submit', function (e) {
     e.preventDefault();
+    loginToSmartFox(username, password);
     const username = document.getElementById('signin-email').value;
     const password = document.getElementById('signin-password').value;
-  
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    const user = users.find(u => u.email === username && u.password === password);
+    
+    const user = findUser(u.email, u.password)
   
     if (user) {
-    loginToSmartFox(username, password);
-      localStorage.setItem('currentUser', JSON.stringify(user));
-  
-      // Redirect based on role
       if (user.role === 'teacher') {
         window.location.href = 'teacher-dashboard.html';
       } else {
