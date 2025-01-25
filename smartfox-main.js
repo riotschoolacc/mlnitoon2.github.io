@@ -101,7 +101,7 @@ function loginToSmartFox(email, password, login_type, username, age, role) {
 
     return new Promise((resolve, reject) => {
         const checkLoginStatus = (event) => {
-            console.log("Event triggered:", event.type);
+            console.log("Event triggered:", event);
             if (event.type === SFS2X.SFSEvent.LOGIN) {
                 console.log("Login Success!");
                 resolve(true);
