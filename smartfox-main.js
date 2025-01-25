@@ -89,6 +89,7 @@ function reset() {
 function loginToSmartFox(email, password, username, age, role) {
     console.log("Loginning In to smartfox")
     var params = new SFS2X.SFSObject();
+    // TODO make it nly need username age and role if sign up
     params.putUtfString("username", username);
     params.putInt("age", age);
     params.putUtfString("role", role);
