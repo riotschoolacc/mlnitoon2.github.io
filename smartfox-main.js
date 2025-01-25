@@ -45,13 +45,11 @@ function onConnectionLost(event) {
     reset();
 }
 
-function onExtensionResponse(evt)
-{
+function onExtensionResponse(evt) {
     var cmd = evt.cmd;
     var sfso = evt.params;
-     
-    if (cmd == CMD_SUBMIT)
-    {
+
+    if (cmd == CMD_SUBMIT) {
         if (sfso.getBool("success"))
             console.log("Success, thanks for registering");
         else
@@ -60,14 +58,14 @@ function onExtensionResponse(evt)
 
     if (cmd == "UserFoundResponse") {
         const success = sfso.getBool("success");
-    
+
         if (success) {
             const userData = {
                 username: sfso.getUtfString("username"),
                 role: sfso.getUtfString("role"),
                 status: sfso.getBool("status"),
             };
-    
+
             onUserFoundResponse({
                 status: success,
                 userData: userData
@@ -76,9 +74,10 @@ function onExtensionResponse(evt)
             onUserFoundResponse({
                 status: false
             });
-        }
+        } 
     }
 }
+
 
 function reset() {
     sfs.removeEventListener(SFS2X.SFSEvent.CONNECTION, onConnection);
