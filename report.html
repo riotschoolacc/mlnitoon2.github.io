@@ -21,6 +21,8 @@
           <option value="playing-games">Playing Games</option>
           <option value="bullying">Bullying</option>
           <option value="cheating">Cheating</option>
+          <option value="sleeping">Sleeping</option>
+          <option value="language">Inappropriate Language</option>
           <option value="other">Other</option>
         </select>
 
@@ -31,6 +33,45 @@
             <option value="another-student">Another Student</option>
           </select>
         </div>
+
+        <div id="language-options" class="hidden">
+          <label for="language-type">What did they say?</label>
+          <select id="language-type">
+            <option value="slurs">Slur(s)</option>
+          </select>
+        </div>
+
+        <label for="severity-level">Severity of the Issue:</label>
+        <select id="severity-level" required>
+          <option value="">Select Severity</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+          <option value="urgent">Urgent</option>
+        </select>
+
+        <label for="incident-time">Date and Time of Incident:</label>
+        <input type="datetime-local" id="incident-time" required>
+        <label for="incident-location">Where did it happen?</label>
+        <input type="text" id="incident-location" placeholder="E.g., Classroom, Hallway">
+
+        <label for="evidence">Attach Evidence: (If any)</label>
+        <input type="file" id="evidence" accept="image/*, video/*">
+
+        <label for="witnesses">Were there any witnesses?</label>
+        <textarea id="witnesses" placeholder="List any witnesses to the incident..."></textarea>
+
+        <label for="follow-up">Preferred Follow-Up Action:</label>
+        <select id="follow-up" required>
+          <option value="">Select an option</option>
+          <option value="investigate">Investigate the issue</option>
+          <option value="speak-to-student">Speak to the student involved</option>
+          <option value="speak-to-parents">Speak to the student's parents</option>
+          <option value="other">Other</option>
+        </select>
+
+        <label for="anonymous">Submit Anonymously:</label>
+        <input type="checkbox" id="anonymous">
 
         <div id="other-issue" class="hidden">
           <label for="other-details">What did they do?</label>
