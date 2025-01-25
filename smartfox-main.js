@@ -86,13 +86,13 @@ function reset() {
     sfs = null;
 }
 
-function loginToSmartFox(username, password, email, age, role) {
+function loginToSmartFox(email, password, username, age, role) {
     console.log("Loginning In to smartfox")
     var params = new SFS2X.SFSObject();
-    params.putUtfString("email", email);
+    params.putUtfString("username", username);
     params.putInt("age", age);
     params.putUtfString("role", role);
-    sfs.send(new SFS2X.LoginRequest(username, password, params, zoneName));
+    sfs.send(new SFS2X.LoginRequest(email, password, params, zoneName));
 }
 
 function findUser(username, password) {
