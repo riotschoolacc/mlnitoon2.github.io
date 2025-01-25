@@ -16,9 +16,12 @@ sfs.logger.enableEventDispatching = true;
 // Add event listeners
 sfs.addEventListener(SFS2X.SFSEvent.CONNECTION, onConnection, this);
 sfs.addEventListener(SFS2X.SFSEvent.CONNECTION_LOST, onConnectionLost, this);
+sfs.addEventListener(SFS2X.SFSEvent.EXTENSION_RESPONSE, onExtensionResponse, this);
 
 // Attempt connection
 sfs.connect();
+
+var CMD_SUBMIT = "$SignUp.Submit";
 
 function onConnection(event) {
     if (event.success) {
@@ -37,6 +40,20 @@ function onConnectionLost(event) {
     reset();
 }
 
+function onExtensionResponse(evt)
+{
+    var cmd = evt.cmd;
+    var sfso = evt.params;
+     
+    if (cmd == CMD_SUBMIT)
+    {
+        if (sfso.getBool("success"))
+            console.log("Success, thanks for registering");
+        else
+            console.warn("SignUp error:" + sfso.getUtfString("errorMessage"));
+    }
+}
+
 function reset() {
 
     // Remove SFS2X listeners
@@ -47,6 +64,11 @@ function reset() {
 }
 
 function loginToSmartFox(username, password) {
+    console.log("Loginning In to smartfox")
     var zoneName = "Worko";
     sfs.login(zoneName, username, password);
+}
+
+function findUser(username, password) {
+    console.log("Finding")
 }
