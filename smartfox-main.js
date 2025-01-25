@@ -60,14 +60,14 @@ function onExtensionResponse(evt)
 
     if (cmd == "UserFoundResponse") {
         const success = sfso.getBool("success");
-
+    
         if (success) {
             const userData = {
                 username: sfso.getUtfString("username"),
                 role: sfso.getUtfString("role"),
                 status: sfso.getBool("status"),
             };
-
+    
             onUserFoundResponse({
                 status: success,
                 userData: userData
@@ -76,6 +76,7 @@ function onExtensionResponse(evt)
             onUserFoundResponse({
                 status: false
             });
+        }
     }
 }
 
