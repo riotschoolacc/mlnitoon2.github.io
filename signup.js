@@ -1,9 +1,8 @@
-async function handleLogin(email, password, login_type, username, age, role) {
-    const success = await loginToSmartFox(email, password, login_type, username, age, role);
-    return success;
+function handleLogin(email, password, login_type, username, age, role) {
+  return loginToSmartFox(email, password, login_type, username, age, role);
 }
 
-document.getElementById('signup-form').addEventListener('submit', async function (e) {
+document.getElementById('signup-form').addEventListener('submit', function (e) {
   e.preventDefault();
   const username = document.getElementById('signup-username').value;
   const email = document.getElementById('signup-email').value;
@@ -26,6 +25,24 @@ document.getElementById('signup-form').addEventListener('submit', async function
     showAlert('Sign-up failed. Username and password should not match.', 7000);
     return;
   }
+
+  if (age < 6) {
+    showAlert('You are not that young.', 7000);
+    return;
+  }
+
+  handleLogin(email, password, "signup", username, age, role).then(success => {
+    if (success) {
+      if (role === 'teacher') {
+        window.location.href = 'teacher-dashboard.html';
+      } else {
+        window.location.href = 'student-dashboard.html';
+      }
+    } else {
+      showAlert('Sign-up failed. Check your credentials and try again.', 7000);
+    }
+  });
+});
 
   if (age < 6) {
     showAlert('You are not that young.', 7000);
