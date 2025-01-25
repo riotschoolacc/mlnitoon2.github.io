@@ -22,7 +22,12 @@ document.getElementById('signup-form').addEventListener('submit', function (e) {
     return;
   }
 
-  success = loginToSmartFox(email, password, "signin", username, age, role);
+  if (age < 6) {
+    showAlert('You are not that young.', 7000);
+    return;
+  }
+
+  success = loginToSmartFox(email, password, "signup", username, age, role);
   if (success) {
   
     // Redirect based on role
