@@ -22,7 +22,7 @@ document.getElementById('signin-form').addEventListener('submit', async function
     const password = document.getElementById('signin-password').value;
 
     // First, attempt to log in
-    loginToSmartFox(email, password);
+    loginToSmartFox(email, password, "signin");
 
     // Wait for user response after attempting login
     const user = await waitForUserResponse(); // This will wait until foundUserResponse is not null
