@@ -13,6 +13,13 @@ document.getElementById('report-form').addEventListener('submit', function (e) {
 
   const studentName = document.getElementById('student-name').value; // Get the reported student's name
   const reportText = document.getElementById('report-text').value;
+  const issueType = document.getElementById('issue-type').value;
+  const severityLevel = document.getElementById('severity-level').value;
+  const incidentTime = document.getElementById('incident-time').value;
+  const incidentLocation = document.getElementById('incident-location').value;
+  const witnesses = document.getElementById('witnesses').value;
+  const followUp = document.getElementById('follow-up').value;
+  const anonymous = document.getElementById('anonymous').checked;
 
   // Check if any of the fields are empty
   if (!studentName || !reportText) {
@@ -22,13 +29,22 @@ document.getElementById('report-form').addEventListener('submit', function (e) {
 
   // Retrieve or initialize the global reports array
   const reports = JSON.parse(localStorage.getItem('reports')) || [];
-
+  const evidence = document.getElementById('evidence').files;
+  const evidenceArray = Array.from(evidence).map(file => file.name); // Store file names
+  
   // Create a new report with the correct student name
   const newReport = {
-    studentName: studentName, // Set the correct student name (reported user)
-    issue: reportText,
-    submittedBy: currentUser.username, // The person submitting the report is still the logged-in user
-    fullStory: reportText || 'No details provided', // Get the full story if entered
+    studentName: studentName,
+    issue: issueType,
+    severityLevel: severityLevel,
+    incidentTime: incidentTime,
+    incidentLocation: incidentLocation,
+    witnesses: witnesses,
+    followUp: followUp,
+    anonymous: anonymous,
+    fullStory: reportText || 'No details provided',
+    submittedBy: currentUser.username,
+    evidence: evidenceArray,
   };
 
   // Add the report to the global array
