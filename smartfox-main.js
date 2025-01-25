@@ -17,6 +17,8 @@ sfs.logger.enableEventDispatching = true;
 sfs.addEventListener(SFS2X.SFSEvent.CONNECTION, onConnection, this);
 sfs.addEventListener(SFS2X.SFSEvent.CONNECTION_LOST, onConnectionLost, this);
 sfs.addEventListener(SFS2X.SFSEvent.EXTENSION_RESPONSE, onExtensionResponse, this);
+sfs.addEventListener(SFS2X.SFSEvent.LOGIN, onLogin, this);
+sfs.addEventListener(SFS2X.SFSEvent.LOGIN_ERROR, onLoginError, this);
 
 // Attempt connection
 sfs.connect();
@@ -32,6 +34,16 @@ function onConnection(event) {
         // Reset
         reset();
     }
+}
+
+function onLogin(evt)
+{
+    console.log("Login successful; username is " + evt.user.name);
+}
+ 
+function onLoginError(evt)
+{
+    console.warn("Login failed: " + evt.errorMessage);
 }
 
 function onConnectionLost(event) {
@@ -66,7 +78,7 @@ function reset() {
 function loginToSmartFox(username, password) {
     console.log("Loginning In to smartfox")
     var zoneName = "Worko";
-    sfs.login(zoneName, username, password);
+    sfs.send(new SFS2X.LoginRequest(username, password, null, zoneName));
 }
 
 function findUser(username, password) {
