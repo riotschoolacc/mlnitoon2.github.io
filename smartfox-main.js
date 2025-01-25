@@ -78,7 +78,6 @@ function onExtensionResponse(evt) {
     }
 }
 
-
 function reset() {
     sfs.removeEventListener(SFS2X.SFSEvent.CONNECTION, onConnection);
     sfs.removeEventListener(SFS2X.SFSEvent.CONNECTION_LOST, onConnectionLost);
