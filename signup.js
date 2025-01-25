@@ -47,4 +47,4 @@ document.getElementById('signup-form').addEventListener('submit', function (e) {
     showAlert('You are not that young.', 7000);
     return;
   }
-}
+})
