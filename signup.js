@@ -1,3 +1,8 @@
+async function handleLogin(email, password, login_type, username, age, role) {
+    const success = await loginToSmartFox(email, password, login_type, username, age, role);
+    return success;
+}
+
 document.getElementById('signup-form').addEventListener('submit', function (e) {
   e.preventDefault();
   const username = document.getElementById('signup-username').value;
@@ -27,7 +32,7 @@ document.getElementById('signup-form').addEventListener('submit', function (e) {
     return;
   }
 
-  success = loginToSmartFox(email, password, "signup", username, age, role);
+  success = await handleLogin(email, password, "signup", username, age, role);
   if (success) {
     if (role === 'teacher') {
       window.location.href = 'teacher-dashboard.html';
