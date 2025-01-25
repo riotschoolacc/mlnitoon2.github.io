@@ -16,21 +16,33 @@ document.getElementById('signup-form').addEventListener('submit', function (e) {
   const role = document.getElementById('signup-role').value;
   const age = document.getElementById('signup-age').value;
 
-  // Check if passwords match
   if (password !== repeatPassword) {
     showAlert('Sign-up failed. Passwords do not match.', 7000);
     return;
   }
 
+  if (password == username) {
+    showAlert('Sign-up failed. Username and password should not match.', 7000);
+    return;
+  }
+
+  if (age == 0) {
+    showAlert('Obviously, you are not 0 years old.', 7000);
+    return;
+  }
+
   success = signup(username, email, password, age, role)
 
-  // Auto-sign-in
-  localStorage.setItem('currentUser', JSON.stringify({ username, role, email, age}));
-
-  // Redirect based on role
-  if (role === 'teacher') {
-    window.location.href = 'teacher-dashboard.html';
+  if (success) {
+    localStorage.setItem('currentUser', JSON.stringify({ username, role, email, age}));
+  
+    // Redirect based on role
+    if (role === 'teacher') {
+      window.location.href = 'teacher-dashboard.html';
+    } else {
+      window.location.href = 'student-dashboard.html';
+    } 
   } else {
-    window.location.href = 'student-dashboard.html';
+    showAlert('Sign-up failed. Check your credantials and try again.', 7000);
   }
 });
