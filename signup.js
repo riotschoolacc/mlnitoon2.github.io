@@ -3,7 +3,7 @@ async function handleLogin(email, password, login_type, username, age, role) {
     return success;
 }
 
-document.getElementById('signup-form').addEventListener('submit', function (e) {
+document.getElementById('signup-form').addEventListener('submit', async function (e) {
   e.preventDefault();
   const username = document.getElementById('signup-username').value;
   const email = document.getElementById('signup-email').value;
@@ -32,7 +32,7 @@ document.getElementById('signup-form').addEventListener('submit', function (e) {
     return;
   }
 
-  success = await handleLogin(email, password, "signup", username, age, role);
+  const success = await handleLogin(email, password, "signup", username, age, role);
   if (success) {
     if (role === 'teacher') {
       window.location.href = 'teacher-dashboard.html';
