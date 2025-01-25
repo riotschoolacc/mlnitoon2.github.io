@@ -9,7 +9,6 @@ document.getElementById('signin-form').addEventListener('submit', function (e) {
     if (user) {
     loginToSmartFox(username, password);
       localStorage.setItem('currentUser', JSON.stringify(user));
-      alert(`Signed in successfully as ${user.role}!`);
   
       // Redirect based on role
       if (user.role === 'teacher') {
@@ -18,7 +17,7 @@ document.getElementById('signin-form').addEventListener('submit', function (e) {
         window.location.href = 'student-dashboard.html';
       }
     } else {
-      alert('Invalid username or password.');
+      showAlert('Sign-in failed. Please check your credentials.', 7000);
     }
   });
   
