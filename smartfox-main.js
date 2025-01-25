@@ -89,8 +89,8 @@ function reset() {
 
 function loginToSmartFox(email, password, login_type, username, age, role) {
     console.log("Logging into smartfox");
-    var params = new SFS2X.SFSObject();
 
+    var params = new SFS2X.SFSObject();
     if (login_type == "signup") {
         params.putUtfString("username", username);
         params.putInt("age", parseInt(age));
@@ -98,21 +98,25 @@ function loginToSmartFox(email, password, login_type, username, age, role) {
     }
 
     params.putUtfString("login_type", login_type);
-    sfs.send(new SFS2X.LoginRequest(email, password, params, zoneName));
 
     return new Promise((resolve, reject) => {
         const checkLoginStatus = (event) => {
-            console.log("Checking Login Status");
             if (event.type === SFS2X.SFSEvent.LOGIN) {
-                console.log("Success!");
+                console.log("Login Success!");
                 resolve(true);
+                sfs.removeEventListener(SFS2X.SFSEvent.LOGIN, checkLoginStatus); 
+                sfs.removeEventListener(SFS2X.SFSEvent.LOGIN_ERROR, checkLoginStatus);
             } else if (event.type === SFS2X.SFSEvent.LOGIN_ERROR) {
-                console.log("Un-Success!");
-                resolve(false);
+                console.log("Login Failed!");
+                resolve(false); 
+                sfs.removeEventListener(SFS2X.SFSEvent.LOGIN, checkLoginStatus);
+                sfs.removeEventListener(SFS2X.SFSEvent.LOGIN_ERROR, checkLoginStatus);
             }
         };
 
         sfs.addEventListener(SFS2X.SFSEvent.LOGIN, checkLoginStatus);
         sfs.addEventListener(SFS2X.SFSEvent.LOGIN_ERROR, checkLoginStatus);
+
+        sfs.send(new SFS2X.LoginRequest(email, password, params, zoneName));
     });
 }
