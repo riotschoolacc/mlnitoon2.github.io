@@ -7,6 +7,11 @@ document.getElementById('signup-form').addEventListener('submit', function (e) {
   const role = document.getElementById('signup-role').value;
   const age = document.getElementById('signup-age').value;
 
+  if (!username || !email || !password || !repeatPassword || !role || !age) {
+    showAlert('Please fill in all fields.', 7000);
+    return;
+  }
+
   if (password !== repeatPassword) {
     showAlert('Sign-up failed. Passwords do not match.', 7000);
     return;
@@ -30,6 +35,6 @@ document.getElementById('signup-form').addEventListener('submit', function (e) {
       window.location.href = 'student-dashboard.html';
     } 
   } else {
-    showAlert('Sign-up failed. Check your credantials and try again.', 7000);
+    showAlert('Sign-up failed. Check your credentials and try again.', 7000);
   }
 });
