@@ -14,27 +14,18 @@ document.getElementById('signup-form').addEventListener('submit', function (e) {
   const password = document.getElementById('signup-password').value;
   const repeatPassword = document.getElementById('repeat-password').value;
   const role = document.getElementById('signup-role').value;
-  const classCode = document.getElementById('signup-class').value;
+  const age = document.getElementById('signup-age').value;
 
   // Check if passwords match
   if (password !== repeatPassword) {
-    alert('Passwords do not match. Please try again.');
+    showAlert('Sign-up failed. Passwords do not match.', 7000);
     return;
   }
 
-  // Check if class code is required for students
-  if (role === 'student' && !classCode) {
-    alert('Class code is required for students.');
-    return;
-  }
-
-  // Save user to localStorage
-  const users = JSON.parse(localStorage.getItem('users')) || [];
-  users.push({ username, password, role, classCode, reports: [] });
-  localStorage.setItem('users', JSON.stringify(users));
+  success = signup(username, email, password, age, role)
 
   // Auto-sign-in
-  localStorage.setItem('currentUser', JSON.stringify({ username, role, email }));
+  localStorage.setItem('currentUser', JSON.stringify({ username, role, email, age}));
 
   // Redirect based on role
   if (role === 'teacher') {
