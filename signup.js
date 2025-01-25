@@ -42,7 +42,6 @@ document.getElementById('signup-form').addEventListener('submit', function (e) {
       showAlert('Sign-up failed. Check your credentials and try again.', 7000);
     }
   });
-});
 
   if (age < 6) {
     showAlert('You are not that young.', 7000);
