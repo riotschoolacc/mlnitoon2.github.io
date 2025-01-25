@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TEST PAGE</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Include your custom styles here -->
+</head>
+<body>
+
+  <!-- Include the custom alert structure -->
+  <div id="custom-alert" class="alert hidden">
+    <div class="alert-message"></div>
+    <button id="alert-close-btn">Close</button>
+  </div>
+
+  <!-- Your page content goes here -->
+
+  <script src="alert.js"></script> <!-- Include the alert script -->
+  <script>
+    // Example usage of the custom alert function
+    document.getElementById('submit-btn').addEventListener('click', function() {
+      // Trigger the custom alert with a message
+      showAlert('This is a custom alert!', 3000); // Will disappear after 3 seconds
+    });
+  </script>
+
+</body>
+</html>
