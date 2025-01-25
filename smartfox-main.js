@@ -1,26 +1,21 @@
-// Create configuration object
 var config = {};
 config.host = "127.0.0.1";
 config.port = 8080;
 config.debug = true;
 config.useSSL = false;
 
-// Create SmartFox client instance
 sfs = new SFS2X.SmartFox(config);
 
-// Set logging
 sfs.logger.level = SFS2X.LogLevel.DEBUG;
 sfs.logger.enableConsoleOutput = true;
 sfs.logger.enableEventDispatching = true;
 
-// Add event listeners
 sfs.addEventListener(SFS2X.SFSEvent.CONNECTION, onConnection, this);
 sfs.addEventListener(SFS2X.SFSEvent.CONNECTION_LOST, onConnectionLost, this);
 sfs.addEventListener(SFS2X.SFSEvent.EXTENSION_RESPONSE, onExtensionResponse, this);
 sfs.addEventListener(SFS2X.SFSEvent.LOGIN, onLogin, this);
 sfs.addEventListener(SFS2X.SFSEvent.LOGIN_ERROR, onLoginError, this);
 
-// Attempt connection
 sfs.connect();
 
 var CMD_SUBMIT = "$SignUp.Submit";
@@ -31,7 +26,6 @@ function onConnection(event) {
     } else {
         console.log("Connection failed: " + (event.errorMessage ? event.errorMessage + " (" + event.errorCode + ")" : "Is the server running at all?"));
 
-        // Reset
         reset();
     }
 }
@@ -48,7 +42,6 @@ function onLoginError(evt)
 
 function onConnectionLost(event) {
     console.log("Disconnection occurred; reason is: " + event.reason);
-    // Reset
     reset();
 }
 
@@ -65,28 +58,28 @@ function onExtensionResponse(evt)
             console.warn("SignUp error:" + sfso.getUtfString("errorMessage"));
     }
 
-    if (cmd == "LoginResponse") {
-        const loginSuccess = sfso.getBool("loginSuccess");
+    if (cmd == "UserFoundResponse") {
+        const success = sfso.getBool("success");
 
-        // Get additional user data (assuming you have this in the response)
-        const userData = {
-            username: sfso.getUtfString("username"),
-            role: sfso.getUtfString("role"),
-            status: sfso.getBool("status"),  // Assuming `status` is a boolean
-            // Add any other user data here...
-        };
+        if (success) {
+            const userData = {
+                username: sfso.getUtfString("username"),
+                role: sfso.getUtfString("role"),
+                status: sfso.getBool("status"),
+            };
 
-        // Pass the login success status and user data to the onUserFoundResponse function
-        onUserFoundResponse({
-            status: loginSuccess,
-            userData: userData
-        });
+            onUserFoundResponse({
+                status: success,
+                userData: userData
+            });
+        } else {
+            onUserFoundResponse({
+                status: false
+            });
     }
 }
 
 function reset() {
-
-    // Remove SFS2X listeners
     sfs.removeEventListener(SFS2X.SFSEvent.CONNECTION, onConnection);
     sfs.removeEventListener(SFS2X.SFSEvent.CONNECTION_LOST, onConnectionLost);
 
