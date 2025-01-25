@@ -87,7 +87,7 @@ function reset() {
 }
 
 function loginToSmartFox(email, password, login_type, username, age, role) {
-    console.log("Loginning In to smartfox")
+    console.log("Logging into smartfox")
     var params = new SFS2X.SFSObject();
 
     if (login_type == "signup") {
