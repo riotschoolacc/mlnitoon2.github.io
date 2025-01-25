@@ -1,10 +1,10 @@
 document.getElementById('signin-form').addEventListener('submit', function (e) {
     e.preventDefault();
-    const username = document.getElementById('signin-email').value;
+    const email = document.getElementById('signin-email').value;
     const password = document.getElementById('signin-password').value;
-    loginToSmartFox(username, password);
+    loginToSmartFox(email, password);
     
-    const user = findUser(u.email, u.password)
+    const user = findUser(email, password)
   
     if (user) {
       if (user.role === 'teacher') {
