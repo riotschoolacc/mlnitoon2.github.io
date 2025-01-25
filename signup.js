@@ -17,11 +17,6 @@ document.getElementById('signup-form').addEventListener('submit', function (e) {
     return;
   }
 
-  if (age == 0) {
-    showAlert('Obviously, you are not 0 years old.', 7000);
-    return;
-  }
-
   if (age < 6) {
     showAlert('You are not that young.', 7000);
     return;
@@ -29,8 +24,6 @@ document.getElementById('signup-form').addEventListener('submit', function (e) {
 
   success = loginToSmartFox(email, password, "signup", username, age, role);
   if (success) {
-  
-    // Redirect based on role
     if (role === 'teacher') {
       window.location.href = 'teacher-dashboard.html';
     } else {
