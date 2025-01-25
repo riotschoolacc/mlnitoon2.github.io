@@ -64,6 +64,24 @@ function onExtensionResponse(evt)
         else
             console.warn("SignUp error:" + sfso.getUtfString("errorMessage"));
     }
+
+    if (cmd == "LoginResponse") {
+        const loginSuccess = sfso.getBool("loginSuccess");
+
+        // Get additional user data (assuming you have this in the response)
+        const userData = {
+            username: sfso.getUtfString("username"),
+            role: sfso.getUtfString("role"),
+            status: sfso.getBool("status"),  // Assuming `status` is a boolean
+            // Add any other user data here...
+        };
+
+        // Pass the login success status and user data to the onUserFoundResponse function
+        onUserFoundResponse({
+            status: loginSuccess,
+            userData: userData
+        });
+    }
 }
 
 function reset() {
