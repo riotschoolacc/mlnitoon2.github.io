@@ -102,6 +102,7 @@ function loginToSmartFox(email, password, login_type, username, age, role) {
 
     return new Promise((resolve, reject) => {
         const checkLoginStatus = (event) => {
+            console.log("Checking Login Status");
             if (event.type === SFS2X.SFSEvent.LOGIN) {
                 resolve(true);
             } else if (event.type === SFS2X.SFSEvent.LOGIN_ERROR) {
