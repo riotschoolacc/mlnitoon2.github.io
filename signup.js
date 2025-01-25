@@ -31,10 +31,8 @@ document.getElementById('signup-form').addEventListener('submit', function (e) {
     return;
   }
 
-  success = signup(username, email, password, age, role)
-
+  success = loginToSmartFox(email, password, "signin", username, age, role);
   if (success) {
-    localStorage.setItem('currentUser', JSON.stringify({ username, role, email, age}));
   
     // Redirect based on role
     if (role === 'teacher') {
