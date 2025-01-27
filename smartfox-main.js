@@ -99,25 +99,7 @@ function loginToSmartFox(email, password, login_type, username, age, role) {
 
     params.putUtfString("login_type", login_type);
 
-    return new Promise((resolve, reject) => {
-        const checkLoginStatus = (event) => {
-            console.log("Event triggered:", event);
-            if (event.type === SFS2X.SFSEvent.LOGIN) {
-                console.log("Login Success!");
-                resolve(true);
-                sfs.removeEventListener(SFS2X.SFSEvent.LOGIN, checkLoginStatus); 
-                sfs.removeEventListener(SFS2X.SFSEvent.LOGIN_ERROR, checkLoginStatus);
-            } else if (event.type === SFS2X.SFSEvent.LOGIN_ERROR) {
-                console.log("Login Failed!");
-                resolve(false); 
-                sfs.removeEventListener(SFS2X.SFSEvent.LOGIN, checkLoginStatus);
-                sfs.removeEventListener(SFS2X.SFSEvent.LOGIN_ERROR, checkLoginStatus);
-            }
-        };
+    await new Promise(r => setTimeout(r, 2000));
 
-        sfs.addEventListener(SFS2X.SFSEvent.LOGIN, checkLoginStatus);
-        sfs.addEventListener(SFS2X.SFSEvent.LOGIN_ERROR, checkLoginStatus);
-
-        sfs.send(new SFS2X.LoginRequest(email, password, params, zoneName));
-    });
+    return loginSuccess
 }
