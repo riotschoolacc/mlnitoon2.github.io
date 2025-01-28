@@ -34,17 +34,19 @@ document.getElementById('signup-form').addEventListener('submit', function (e) {
 
   var success = loginToSmartFox(email, password, "signup", username, age, role);
 
-  console.log(success);
-
-  if (success) {
-    console.log("Success!");
-    if (role === 'teacher') {
-      window.location.href = 'teacher-dashboard.html';
+  setTimeout(function(){
+    if (success) {
+      console.log("Success!");
+      if (role === 'teacher') {
+        window.location.href = 'teacher-dashboard.html';
+      } else {
+        window.location.href = 'student-dashboard.html';
+      }
     } else {
-      window.location.href = 'student-dashboard.html';
+      console.log("Not Success");
+      showAlert('Sign-up failed. Check your credentials and try again.', 7000);
     }
-  } else {
-    console.log("Not Success");
-    showAlert('Sign-up failed. Check your credentials and try again.', 7000);
-  }
+  }, 2000);
+
+  console.log(success);
 })
