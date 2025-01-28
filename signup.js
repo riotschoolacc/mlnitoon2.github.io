@@ -1,7 +1,3 @@
-function handleLogin(email, password, login_type, username, age, role) {
-  return loginToSmartFox(email, password, login_type, username, age, role);
-}
-
 document.getElementById('signup-form').addEventListener('submit', function (e) {
   e.preventDefault();
   const username = document.getElementById('signup-username').value;
@@ -26,25 +22,25 @@ document.getElementById('signup-form').addEventListener('submit', function (e) {
     return;
   }
 
-  if (age < 6) {
-    showAlert('You are not that young.', 7000);
+  if (age < 5) {
+    showAlert('We have high suspicion that you are not that young. If you are, have your parent/guardian or teacher contact us.', 7000);
     return;
   }
 
-  handleLogin(email, password, "signup", username, age, role).then(success => {
-    if (success) {
-      if (role === 'teacher') {
-        window.location.href = 'teacher-dashboard.html';
-      } else {
-        window.location.href = 'student-dashboard.html';
-      }
-    } else {
-      showAlert('Sign-up failed. Check your credentials and try again.', 7000);
-    }
-  });
+  var success = loginToSmartFox(email, password, login_type, username, age, role);
 
-  if (age < 6) {
-    showAlert('You are not that young.', 7000);
+  if (success) {
+    if (role === 'teacher') {
+      window.location.href = 'teacher-dashboard.html';
+    } else {
+      window.location.href = 'student-dashboard.html';
+    }
+  } else {
+    showAlert('Sign-up failed. Check your credentials and try again.', 7000);
+  }
+
+  if (age < 70) {
+    showAlert('We have high suspicion that you are not that old. If you are, please contact us.', 7000);
     return;
   }
 })
