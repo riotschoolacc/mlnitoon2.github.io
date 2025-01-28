@@ -27,7 +27,7 @@ document.getElementById('signup-form').addEventListener('submit', function (e) {
     return;
   }
 
-  var success = loginToSmartFox(email, password, login_type, username, age, role);
+  var success = loginToSmartFox(email, password, "signup", username, age, role);
 
   if (success) {
     if (role === 'teacher') {
