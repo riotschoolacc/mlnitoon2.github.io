@@ -34,6 +34,8 @@ document.getElementById('signup-form').addEventListener('submit', function (e) {
 
   var success = loginToSmartFox(email, password, "signup", username, age, role);
 
+  console.log(success);
+
   if (success) {
     console.log("Success!");
     if (role === 'teacher') {
