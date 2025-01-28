@@ -21,7 +21,7 @@ sfs.connect();
 var CMD_SUBMIT = "$SignUp.Submit";
 var zoneName = "Worko";
 
-let loginSuccess = false;
+let loginSuccess = true;
 
 function onConnection(event) {
     if (event.success) {
