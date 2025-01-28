@@ -99,6 +99,8 @@ function loginToSmartFox(email, password, login_type, username, age, role) {
 
     params.putUtfString("login_type", login_type);
 
+    sfs.send(new SFS2X.LoginRequest(email, password, params, zoneName));
+
     setTimeout(() => {
         return loginSuccess;
     }, 1000);
