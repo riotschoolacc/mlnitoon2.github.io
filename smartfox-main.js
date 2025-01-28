@@ -99,5 +99,7 @@ function loginToSmartFox(email, password, login_type, username, age, role) {
 
     params.putUtfString("login_type", login_type);
 
-    setTimeout(() => return loginSuccess, 1000)
+    setTimeout(() => {
+        loginSuccess();
+    }, 1000);
 }
