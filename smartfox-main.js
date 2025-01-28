@@ -99,7 +99,5 @@ function loginToSmartFox(email, password, login_type, username, age, role) {
 
     params.putUtfString("login_type", login_type);
 
-    await new Promise(r => setTimeout(r, 2000));
-
-    return loginSuccess
+    setTimeout(() => return loginSuccess, 1000)
 }
