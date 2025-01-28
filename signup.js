@@ -42,6 +42,7 @@ document.getElementById('signup-form').addEventListener('submit', function (e) {
       window.location.href = 'student-dashboard.html';
     }
   } else {
+    console.log("Not Success");
     showAlert('Sign-up failed. Check your credentials and try again.', 7000);
   }
 })
