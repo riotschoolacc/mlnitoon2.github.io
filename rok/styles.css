@@ -8,20 +8,22 @@
 /* Body and Background Styles */
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #0a0a0a, #141414); /* Dark gradient background */
+    background: linear-gradient(135deg, #111, #222); /* Dark gradient background */
     color: #e0e0e0;
     line-height: 1.6;
     padding: 0 20px;
+    overflow-x: hidden;
 }
 
 /* Header Styles */
 header {
     text-align: center;
     padding: 80px 20px;
-    background: linear-gradient(135deg, #ff0066, #6600ff); /* Header gradient */
+    background: linear-gradient(135deg, #2a2a2a, #141414); /* Dark header gradient */
     border-radius: 10px;
     margin-bottom: 40px;
     position: relative;
+    animation: fadeIn 2s ease-in-out;
 }
 
 header .logo {
@@ -34,30 +36,34 @@ header h1 {
     text-transform: uppercase;
     color: white;
     letter-spacing: 2px;
-    text-shadow: 0 0 10px #ff0066, 0 0 20px #6600ff;
+    text-shadow: 0 0 10px #ff0080, 0 0 20px #ff0080;
+    animation: slideIn 1.5s ease-out;
 }
 
 header p {
     font-size: 1.5em;
     color: white;
     margin-bottom: 30px;
+    opacity: 0.7;
 }
 
 header .btn {
     text-decoration: none;
     color: #121212;
-    background: #00ff00;
+    background: #444;
     padding: 12px 25px;
     border-radius: 5px;
     font-size: 1.2em;
     text-transform: uppercase;
     transition: all 0.3s ease;
-    box-shadow: 0px 5px 15px rgba(0, 255, 0, 0.2);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    opacity: 0.9;
 }
 
 header .btn:hover {
-    background: #00cc00;
-    transform: scale(1.1);
+    background: #666;
+    transform: scale(1.05);
+    opacity: 1;
 }
 
 /* Hero Section */
@@ -69,6 +75,8 @@ header .btn:hover {
     justify-content: center;
     align-items: center;
     text-align: center;
+    position: relative;
+    animation: fadeIn 2s ease-in-out;
 }
 
 .hero-text {
@@ -76,6 +84,7 @@ header .btn:hover {
     background: rgba(0, 0, 0, 0.5);
     padding: 40px;
     border-radius: 10px;
+    animation: slideIn 1.5s ease-out;
 }
 
 .hero h2 {
@@ -91,14 +100,15 @@ header .btn:hover {
 .features {
     margin-bottom: 50px;
     padding: 30px;
-    background-color: #222222;
+    background-color: #333;
     border-radius: 10px;
-    box-shadow: 0px 5px 15px rgba(0, 255, 0, 0.1);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 2s ease-in-out;
 }
 
 .features h2 {
     font-size: 2.5em;
-    color: #00FF00;
+    color: #fff;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -114,24 +124,27 @@ header .btn:hover {
     padding-left: 25px;
     position: relative;
     color: #ccc;
+    opacity: 0;
+    animation: fadeInItem 2s ease-in-out forwards;
 }
 
 .features li::before {
     content: '🔥';
     position: absolute;
     left: 0;
-    color: #00FF00;
+    color: #fff;
     font-size: 1.5em;
     top: 0;
 }
 
 /* About Section */
 .about {
-    background-color: #222222;
+    background-color: #333;
     padding: 30px;
     margin-bottom: 50px;
     border-radius: 10px;
-    box-shadow: 0px 5px 15px rgba(0, 255, 0, 0.1);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 2s ease-in-out;
 }
 
 .about p {
@@ -143,15 +156,16 @@ header .btn:hover {
 
 /* FAQ Section */
 .faq {
-    background-color: #222222;
+    background-color: #333;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0px 5px 15px rgba(0, 255, 0, 0.1);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 2s ease-in-out;
 }
 
 .faq h2 {
     font-size: 2.5em;
-    color: #00FF00;
+    color: #fff;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -162,7 +176,7 @@ header .btn:hover {
 
 .faq-item h3 {
     font-size: 1.6em;
-    color: #00FF00;
+    color: #fff;
     margin-bottom: 10px;
 }
 
@@ -173,12 +187,13 @@ header .btn:hover {
 
 /* Contact Section */
 .contact {
-    background-color: #222222;
+    background-color: #333;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0px 5px 15px rgba(0, 255, 0, 0.1);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
     margin-bottom: 40px;
+    animation: fadeIn 2s ease-in-out;
 }
 
 .contact p {
@@ -187,7 +202,7 @@ header .btn:hover {
 }
 
 .email-link {
-    color: #00FF00;
+    color: #ff0080;
     text-decoration: none;
     font-weight: bold;
 }
@@ -200,10 +215,40 @@ header .btn:hover {
 footer {
     text-align: center;
     padding: 20px;
-    background-color: #121212;
+    background-color: #111;
     color: #777;
     border-radius: 8px;
     font-size: 1.1em;
     margin-top: 50px;
-    box-shadow: 0px 5px 15px rgba(0, 255, 0, 0.1);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInItem {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
