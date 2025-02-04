@@ -8,34 +8,38 @@
 /* Body and Background Styles */
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #0f0f0f, #1a1a1a); /* Dark background with gradient */
-    color: #e0e0e0; /* Light text */
+    background: linear-gradient(135deg, #0a0a0a, #141414); /* Dark gradient background */
+    color: #e0e0e0;
     line-height: 1.6;
     padding: 0 20px;
 }
 
 /* Header Styles */
 header {
-    background: linear-gradient(135deg, #ff007f, #a600ff); /* Gradient header */
-    color: white;
     text-align: center;
-    padding: 60px 20px;
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #ff0066, #6600ff); /* Header gradient */
     border-radius: 10px;
-    box-shadow: 0px 5px 15px rgba(255, 0, 127, 0.3);
     margin-bottom: 40px;
     position: relative;
+}
+
+header .logo {
+    margin-bottom: 20px;
 }
 
 header h1 {
     font-size: 4em;
     font-weight: bold;
+    text-transform: uppercase;
+    color: white;
     letter-spacing: 2px;
-    text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f;
-    margin-bottom: 20px;
+    text-shadow: 0 0 10px #ff0066, 0 0 20px #6600ff;
 }
 
 header p {
     font-size: 1.5em;
+    color: white;
     margin-bottom: 30px;
 }
 
@@ -47,7 +51,6 @@ header .btn {
     border-radius: 5px;
     font-size: 1.2em;
     text-transform: uppercase;
-    letter-spacing: 1px;
     transition: all 0.3s ease;
     box-shadow: 0px 5px 15px rgba(0, 255, 0, 0.2);
 }
@@ -57,11 +60,38 @@ header .btn:hover {
     transform: scale(1.1);
 }
 
+/* Hero Section */
+.hero {
+    background: url('background-image.jpg') center center/cover no-repeat;
+    height: 400px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-text {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.hero h2 {
+    font-size: 3em;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 1.5em;
+}
+
 /* Features Section */
 .features {
     margin-bottom: 50px;
     padding: 30px;
-    background-color: #1c1c1c;
+    background-color: #222222;
     border-radius: 10px;
     box-shadow: 0px 5px 15px rgba(0, 255, 0, 0.1);
 }
@@ -97,7 +127,7 @@ header .btn:hover {
 
 /* About Section */
 .about {
-    background-color: #1c1c1c;
+    background-color: #222222;
     padding: 30px;
     margin-bottom: 50px;
     border-radius: 10px;
@@ -111,33 +141,9 @@ header .btn:hover {
     text-align: center;
 }
 
-/* Screenshots Section */
-.screenshots {
-    margin-bottom: 50px;
-    text-align: center;
-}
-
-.screenshot-gallery {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.screenshot {
-    width: 300px;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0px 5px 15px rgba(0, 255, 0, 0.2);
-    transition: transform 0.3s ease;
-}
-
-.screenshot:hover {
-    transform: scale(1.05);
-}
-
 /* FAQ Section */
 .faq {
-    background-color: #1c1c1c;
+    background-color: #222222;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 5px 15px rgba(0, 255, 0, 0.1);
@@ -167,7 +173,7 @@ header .btn:hover {
 
 /* Contact Section */
 .contact {
-    background-color: #1c1c1c;
+    background-color: #222222;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 5px 15px rgba(0, 255, 0, 0.1);
