@@ -1,0 +1,31 @@
+{
+  "version": "1.0.0",
+  "developers": {
+    "mlnitoon2": "Created Worko"
+  },
+  "contributors": {
+    "Smartfox2x": "Server-Client architecture"
+  },
+  "languages": {
+    "en": {
+      "emoji": "🇺🇸",
+      "code": "en",
+      "display": "English"
+    },
+    "es": {
+      "emoji": "🇪🇸",
+      "code": "es",
+      "display": "Español"
+    },
+    "pt": {
+      "emoji": "🇵🇹",
+      "code": "pt",
+      "display": "Português"
+    },
+    "ru": {
+      "emoji": "🇷🇺",
+      "code": "ru",
+      "display": "Русский"
+    },
+  }
+}
