@@ -6,7 +6,7 @@
 
 ### 1. **Visit the Site**
 
-Go to the homepage of **Worko**. You'll be greeted with options to sign up or sign in. [https://mlnitoon2.github.io](https://mlnitoon2.github.io)
+[Go to the homepage of **Worko**](https://mlnitoon2.github.io). You'll be greeted with options to sign up or sign in.
 
 ### 2. **Sign Up (For New Users)**
 
