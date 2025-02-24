@@ -4,7 +4,6 @@ if (!currentUser || currentUser.role !== 'teacher') {
   window.location.href = 'index.html';
 }
 
-// Set the welcome message with the teacher's name
 const welcomeMessage = document.getElementById('welcome-message');
 if (currentUser && currentUser.name) {
   welcomeMessage.innerHTML = `Welcome, ${currentUser.name}`;
@@ -14,7 +13,6 @@ function loadReports() {
   const reportList = document.getElementById('report-list');
   const loading = document.getElementById('loading');
 
-  // Retrieve the reports array from localStorage
   const reports = JSON.parse(localStorage.getItem('reports')) || [];
 
   console.log('All reports:', reports);
