@@ -9,22 +9,18 @@
   "languages": {
     "en": {
       "emoji": "🇺🇸",
-      "code": "en",
       "display": "English"
     },
     "es": {
       "emoji": "🇪🇸",
-      "code": "es",
       "display": "Español"
     },
     "pt": {
       "emoji": "🇵🇹",
-      "code": "pt",
       "display": "Português"
     },
     "ru": {
       "emoji": "🇷🇺",
-      "code": "ru",
       "display": "Русский"
     },
   }
