@@ -1,24 +1,28 @@
-// Temporary in-memory storage for testing
 const users = [];
 const reports = [];
 
 let currentUser = null;
 
-// DOM Elements
 const signupForm = document.getElementById('signup-form');
 const signinForm = document.getElementById('signin-form');
+
 const authContainer = document.getElementById('auth-container');
+
 const dashboard = document.getElementById('dashboard');
+
 const userRoleEl = document.getElementById('user-role');
 const userNameEl = document.getElementById('user-name');
+
 const teacherDashboard = document.getElementById('teacher-dashboard');
 const studentDashboard = document.getElementById('student-dashboard');
+
 const pendingRequestsEl = document.getElementById('pending-requests');
 const incidentReportsEl = document.getElementById('incident-reports');
+
 const reportForm = document.getElementById('report-form');
+
 const studentReportsEl = document.getElementById('student-reports');
 
-// Helper Functions
 function renderDashboard() {
   userRoleEl.textContent = currentUser.role;
   userNameEl.textContent = currentUser.username;
@@ -75,7 +79,6 @@ function renderStudentDashboard() {
     });
 }
 
-// Event Listeners
 signupForm.addEventListener('submit', e => {
   e.preventDefault();
   const username = document.getElementById('signup-username').value;
@@ -89,7 +92,7 @@ signupForm.addEventListener('submit', e => {
   }
 
   users.push({ username, password, role, classCode, approved: role === 'teacher' });
-  alert('Signup successful! Please sign in.');
+  alert('Signup successful!');
   signupForm.reset();
 });
 
