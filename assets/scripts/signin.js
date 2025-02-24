@@ -4,15 +4,14 @@ function onUserFoundResponse(response) {
     foundUserResponse = response;
 }
 
-// Function to simulate waiting for a user response (could be asynchronous)
 function waitForUserResponse() {
     return new Promise((resolve, reject) => {
         const checkInterval = setInterval(() => {
             if (foundUserResponse !== null) {
                 clearInterval(checkInterval);
-                resolve(foundUserResponse); // Resolve with the response when it's not null
+                resolve(foundUserResponse); 
             }
-        }, 500); // Check every 500ms
+        }, 500);
     });
 }
 
@@ -21,11 +20,9 @@ document.getElementById('signin-form').addEventListener('submit', async function
     const email = document.getElementById('signin-email').value;
     const password = document.getElementById('signin-password').value;
 
-    // First, attempt to log in
     loginToSmartFox(email, password, "signin");
 
-    // Wait for user response after attempting login
-    const user = await waitForUserResponse(); // This will wait until foundUserResponse is not null
+    const user = await waitForUserResponse(); 
 
     if (user && user.status !== false) {
         if (user.role === 'teacher') {
