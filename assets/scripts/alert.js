@@ -2,10 +2,8 @@ function showAlert(message, duration = 5000) {
   const alertBox = document.getElementById('custom-alert');
   const alertMessage = document.querySelector('.alert-message');
   
-  // Set the message in the alert
   alertMessage.textContent = message;
 
-  // Show the alert
   alertBox.style.display = 'block';
 
   setTimeout(function() {
@@ -19,7 +17,7 @@ function showAlert(message, duration = 5000) {
 
 (function initializeAlert() {
   if (!document.getElementById('custom-alert')) {
-    console.warn("Custom alert HTML is missing!");
+    console.warn("Alert HTML is missing!");
     return;
   }
 })();
