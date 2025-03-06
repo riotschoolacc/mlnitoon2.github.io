@@ -18,7 +18,6 @@ sfs.addEventListener(SFS2X.SFSEvent.LOGIN_ERROR, onLoginError, this);
 
 sfs.connect();
 
-var CMD_SUBMIT = "$SignUp.Submit";
 var zoneName = "Worko";
 
 let loginSuccess = true;
